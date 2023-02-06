@@ -1,11 +1,27 @@
+import {
+    Nav,
+    NavItem,
+    NavLink,
+    Navbar
+} from 'reactstrap'
+
+
 const NavBar = () => {
     return (
         <>
-            <nav className="nav justify-content-center">
-                <a className="nav-link" href="#">Home</a>
-                <a className="nav-link" href="#">About</a>
-                <a className="nav-link" href="#">Contact</a>
-            </nav>
+           <Navbar color='dark'>
+                <Nav pills> 
+                   <NavItem>
+                      <NavLink active href='/Home'>Home</NavLink>  
+                    </NavItem> 
+                    <NavItem>
+                        <NavLink href='/About'>About</NavLink>
+                    </NavItem>
+                    <NavItem>
+                        <NavLink href='/Contact'>Contact</NavLink>
+                    </NavItem>
+                </Nav>
+           </Navbar>
         </>
 
     )
