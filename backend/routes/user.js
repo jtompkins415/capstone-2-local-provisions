@@ -96,7 +96,7 @@ router.patch('/:username', ensureCorrectUserOrAdmin, async (req, res, next) => {
   } catch (err) {
     return next(err)
   }
-})
+});
 
 /** DELETE: Delete user
  * 
@@ -111,4 +111,6 @@ router.delete('/:username', ensureCorrectUserOrAdmin, async (req, res, next) => 
   } catch (err) {
     return next(err)
   }
-})
+});
+
+module.exports = router;
