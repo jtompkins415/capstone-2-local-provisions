@@ -4,7 +4,6 @@ const db = require("../db");
 const {sqlForPartialUpdate} = require("../helpers/sql");
 const {
     NotFoundError,
-    UnauthorizedError,
     BadRequestError
 } = require('../expressError');
 
@@ -119,6 +118,28 @@ class POIs {
                 type: 'type',
                 url: 'url'
             });
+            
+        const poiVarId = "$" + (values.length + 1)
+        
+        const querySql = await db.query(
+            `UPDATE POIs
+             SET ${setCols}
+             WHERE id = ${poiVarId}
+             RETURNING name,
+                rating,
+                type,
+                url
+        `);
+
+        
+
+        if (!results) throw new NotFoundError(`POI: ${id} not found`);
+
+        return results;
+    }; 
+
+    static async remove(id) {
+        const 
     }
 }
 
