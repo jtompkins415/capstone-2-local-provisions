@@ -131,7 +131,7 @@ class POIs {
                 url
         `);
 
-        
+        const results = await db.query(querySql, [...values], id)
 
         if (!results) throw new NotFoundError(`POI: ${id} not found`);
 
@@ -139,7 +139,16 @@ class POIs {
     }; 
 
     static async remove(id) {
-        const 
+       const results = await db.query(
+            `DELETE FROM POIs
+             WHERE id = $1
+             RETURNING name`, 
+             [id])
+
+        const poi = results.rows[0];
+
+        if (!poi) throw new NotFoundError('Point of interest not found');
+        
     }
 }
 
