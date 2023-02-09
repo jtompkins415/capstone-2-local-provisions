@@ -7,7 +7,7 @@ const {
     BadRequestError
 } = require('../expressError');
 
-class POIs {
+class POI {
    
     /** Find all Points of Interest
      * 
@@ -152,4 +152,4 @@ class POIs {
     }
 }
 
-module.exports = POIs;
+module.exports = POI;
