@@ -8,7 +8,8 @@ const cors = require('cors');
 const {NotFoundError} = require('./expressError');
 
 const {authenticateJWT} = require('./middleware/auth')
-const userRoutes = require('./routes/user')
+const userRoutes = require('./routes/user');
+const poiRoutes = require('./routes/POI');
 
 const morgan = require('morgan');
 
@@ -21,6 +22,7 @@ app.use(morgan('tiny'));
 app.use(authenticateJWT);
 
 app.use('/users', userRoutes);
+app.use('/pois/', poiRoutes);
 
 
 /** Handle 404 errors -- this matches everything */
