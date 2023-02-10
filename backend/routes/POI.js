@@ -8,7 +8,8 @@ const {
     BadRequestError,
     NotFoundError
 } = require('../expressError');
-const jsonschema = require('jsonschema')
+const jsonschema = require('jsonschema');
+const { json } = require('express');
 
 
 
@@ -67,3 +68,46 @@ router.post('/:id', ensureAdmin, async (req, res, next) => {
         return next(err);
     }
 });
+
+/** PATCH: Update POI
+ * 
+ * Can be a partial update
+ * 
+ * Data accepted:
+ * {name, rating, type, url}
+ * 
+ * Returns {name, rating, type, url};
+ * 
+ */
+
+router.patch('/:id', ensureAdmin, async (req, res, next) => {
+    try{
+        const validator = jsonschema.validate(req.body, poiUpdateSchema);
+        if(!validator.valid) {
+            const errs = validator.errors.map(err => err.stack);
+            throw new BadRequestError(errs)
+        }
+
+        const {id} = req.params;
+
+        const result = await POI.updatePOI(id, req.body);
+        return res.status(204).json({result});
+    } catch(err) {
+        return next(err);
+    }
+});
+
+/** DELETE: Delete user */
+
+router.delete('/:id', ensureAdmin, async (req, res, next) => {
+    try{
+        const {id} = req.params;
+        await POI.remove(id);
+        return res.status(204).json({deleted: id})
+    }catch (err) {
+        return next(err)
+    }
+});
+
+
+
