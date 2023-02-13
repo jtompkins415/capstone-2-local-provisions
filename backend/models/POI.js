@@ -20,7 +20,7 @@ class POI {
                 rating, 
                 type,
                 url
-            FROM POIs
+            FROM pois
             ORDER BY rating`
         );
 
@@ -41,7 +41,7 @@ class POI {
                 rating,
                 type,
                 url
-            FROM POIs
+            FROM pois
             WHERE name = $1`,
             [name],
         )
@@ -52,7 +52,7 @@ class POI {
 
         const result = await db.query(
             `INSERT INTO 
-                POIs
+                pois
                 (name,
                  rating,
                  type,
@@ -84,7 +84,7 @@ class POI {
                 rating,
                 type,
                 url
-            FROM POIs
+            FROM pois
             WHERE id = $1`,
             [id],
         );
@@ -122,7 +122,7 @@ class POI {
         const poiVarId = "$" + (values.length + 1)
         
         const querySql = await db.query(
-            `UPDATE POIs
+            `UPDATE pois
              SET ${setCols}
              WHERE id = ${poiVarId}
              RETURNING name,
@@ -140,7 +140,7 @@ class POI {
 
     static async remove(id) {
        const results = await db.query(
-            `DELETE FROM POIs
+            `DELETE FROM pois
              WHERE id = $1
              RETURNING name`, 
              [id])
