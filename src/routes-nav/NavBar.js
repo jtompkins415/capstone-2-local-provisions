@@ -14,8 +14,14 @@ const NavBar = () => {
                    <NavItem>
                       <NavLink active href='/Home'>Home</NavLink>  
                     </NavItem> 
+                   <NavItem>
+                      <NavLink href='/Home'>SF/Bay Area</NavLink>  
+                    </NavItem> 
+                   <NavItem>
+                      <NavLink href='/Home'>Los Angeles</NavLink>  
+                    </NavItem> 
                     <NavItem>
-                        <NavLink href='/About'>About</NavLink>
+                        <NavLink href='/About'>New York</NavLink>
                     </NavItem>
                     <NavItem>
                         <NavLink href='/Contact'>Contact</NavLink>
