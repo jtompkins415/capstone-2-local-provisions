@@ -22,7 +22,7 @@ app.use(morgan('tiny'));
 app.use(authenticateJWT);
 
 app.use('/users', userRoutes);
-app.use('/pois/', poiRoutes);
+app.use('/pois', poiRoutes);
 
 
 /** Handle 404 errors -- this matches everything */
