@@ -1,7 +1,7 @@
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     firstName VARCHAR(255) NOT NULL,
-    lastname VARCHAR(255) NOT NULL,
+    lastName VARCHAR(255) NOT NULL,
     username VARCHAR(255) NOT NULL UNIQUE,
     password TEXT NOT NULL,
     email VARCHAR(255) NOT NULL
@@ -14,22 +14,21 @@ CREATE TABLE POIs(
     name VARCHAR (255) NOT NULL,
     rating FLOAT NOT NULL,
     type TEXT NOT NULL,
-    url TEXT NOT NULL,
-)
+    url TEXT
+);
 
 CREATE TABLE favorites (
-  username VARCHAR(25)
+  user_id INTEGER
     REFERENCES users ON DELETE CASCADE,
   POI_id INTEGER
     REFERENCES POIs ON DELETE CASCADE,
-  PRIMARY KEY (username, POI_id)
+  PRIMARY KEY (user_id, POI_id)
 );
 
 CREATE TABLE locations (
   id SERIAL PRIMARY KEY,
   name TEXT NOT NULL,
   POIs_id INTEGER
-    REFERENCES POIs ON DELETE CASCADE,
-  PRIMARY KEY (POI_id)
+    REFERENCES POIs ON DELETE CASCADE
 );
 
