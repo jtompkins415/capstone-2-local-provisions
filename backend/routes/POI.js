@@ -109,5 +109,7 @@ router.delete('/:id', ensureAdmin, async (req, res, next) => {
     }
 });
 
+module.exports = router;
+
 
 
