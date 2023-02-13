@@ -13,6 +13,9 @@ function App() {
       <Routes>
         <Route path='/home' element={<Home />} />
       </Routes>
+      <Routes>
+        <Route path='/sf-bayarea' element={<Location />} />
+      </Routes>
     </BrowserRouter>
     </div>
   );
